@@ -1,0 +1,1440 @@
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://172.17.128.1:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.8s
+ ✓ Compiled /middleware in 321ms (108 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.9s (1467 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 5273ms
+ ✓ Compiled in 2.5s (701 modules)
+ ○ Compiling /generator ...
+ ✓ Compiled /generator in 1247ms (1561 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /generator 200 in 1653ms
+ ○ Compiling /editor/visual ...
+ ✓ Compiled /editor/visual in 990ms (1592 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /editor/visual 200 in 1351ms
+ ○ Compiling /auth/login ...
+ ✓ Compiled /auth/login in 1421ms (1722 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /auth/login 200 in 1903ms
+ ✓ Compiled /api/v1/ai/status in 465ms (1742 modules)
+ GET /api/v1/ai/status 200 in 608ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1381ms (1795 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /dashboard 200 in 1909ms
+ ○ Compiling /api/v1/ai/generate-animation ...
+ ✓ Compiled /api/v1/ai/generate-animation in 654ms (1797 modules)
+anthropic failed: Error: Anthropic API error: 400 - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CcrKp4b78UaXLRtgyqHPm"}
+    at callAnthropic (src\lib\ai\orchestrator.ts:211:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  209 |   if (!response.ok) {
+  210 |     const error = await response.text()
+> 211 |     throw new Error(`Anthropic API error: ${response.status} - ${error}`)
+      |          ^
+  212 |   }
+  213 |
+  214 |   const data = await response.json()
+gemini failed: Error: Gemini API error: 429 - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 8.257884819s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+            "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "8s"
+      }
+    ]
+  }
+}
+
+    at callGemini (src\lib\ai\orchestrator.ts:259:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  257 |   if (!response.ok) {
+  258 |     const error = await response.text()
+> 259 |     throw new Error(`Gemini API error: ${response.status} - ${error}`)
+      |          ^
+  260 |   }
+  261 |
+  262 |   const data = await response.json()
+openrouter failed: Error: OpenRouter API error: 402 - {"error":{"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account","code":402,"metadata":{"provider_name":null,"previous_errors":[{"code":402,"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account"}]}},"user_id":"user_3FONDMVPlURP0VfaPMh6p6AYyS4"}
+    at callOpenRouter (src\lib\ai\orchestrator.ts:303:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  301 |   if (!response.ok) {
+  302 |     const error = await response.text()
+> 303 |     throw new Error(`OpenRouter API error: ${response.status} - ${error}`)
+      |          ^
+  304 |   }
+  305 |
+  306 |   const data = await response.json()
+ POST /api/v1/ai/generate-animation 200 in 3245ms
+anthropic failed: Error: Anthropic API error: 400 - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CcrKpkF5DcCXGLn2dcChJ"}
+    at callAnthropic (src\lib\ai\orchestrator.ts:211:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  209 |   if (!response.ok) {
+  210 |     const error = await response.text()
+> 211 |     throw new Error(`Anthropic API error: ${response.status} - ${error}`)
+      |          ^
+  212 |   }
+  213 |
+  214 |   const data = await response.json()
+gemini failed: Error: Gemini API error: 429 - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 59.640567246s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+            "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash",
+              "location": "global"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash",
+              "location": "global"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash",
+              "location": "global"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "59s"
+      }
+    ]
+  }
+}
+
+    at callGemini (src\lib\ai\orchestrator.ts:259:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  257 |   if (!response.ok) {
+  258 |     const error = await response.text()
+> 259 |     throw new Error(`Gemini API error: ${response.status} - ${error}`)
+      |          ^
+  260 |   }
+  261 |
+  262 |   const data = await response.json()
+openrouter failed: Error: OpenRouter API error: 402 - {"error":{"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account","code":402,"metadata":{"provider_name":null,"previous_errors":[{"code":402,"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account"}]}},"user_id":"user_3FONDMVPlURP0VfaPMh6p6AYyS4"}
+    at callOpenRouter (src\lib\ai\orchestrator.ts:303:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  301 |   if (!response.ok) {
+  302 |     const error = await response.text()
+> 303 |     throw new Error(`OpenRouter API error: ${response.status} - ${error}`)
+      |          ^
+  304 |   }
+  305 |
+  306 |   const data = await response.json()
+ POST /api/v1/ai/generate-animation 200 in 1506ms
+anthropic failed: Error: Anthropic API error: 400 - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CcrKtS2okNwnQCTM7w4vA"}
+    at callAnthropic (src\lib\ai\orchestrator.ts:211:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  209 |   if (!response.ok) {
+  210 |     const error = await response.text()
+> 211 |     throw new Error(`Anthropic API error: ${response.status} - ${error}`)
+      |          ^
+  212 |   }
+  213 |
+  214 |   const data = await response.json()
+gemini failed: Error: Gemini API error: 429 - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 8.034028628s.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash",
+              "location": "global"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash",
+              "location": "global"
+            }
+          },
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count",
+            "quotaId": "GenerateContentInputTokensPerModelPerMinute-FreeTier",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "8s"
+      }
+    ]
+  }
+}
+
+    at callGemini (src\lib\ai\orchestrator.ts:259:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  257 |   if (!response.ok) {
+  258 |     const error = await response.text()
+> 259 |     throw new Error(`Gemini API error: ${response.status} - ${error}`)
+      |          ^
+  260 |   }
+  261 |
+  262 |   const data = await response.json()
+openrouter failed: Error: OpenRouter API error: 402 - {"error":{"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account","code":402,"metadata":{"provider_name":null,"previous_errors":[{"code":402,"message":"This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 4000. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account"}]}},"user_id":"user_3FONDMVPlURP0VfaPMh6p6AYyS4"}
+    at callOpenRouter (src\lib\ai\orchestrator.ts:303:10)
+    at async generateWithAI (src\lib\ai\orchestrator.ts:108:21)
+    at async POST (src\app\api\v1\ai\generate-animation\route.ts:16:19)
+  301 |   if (!response.ok) {
+  302 |     const error = await response.text()
+> 303 |     throw new Error(`OpenRouter API error: ${response.status} - ${error}`)
+      |          ^
+  304 |   }
+  305 |
+  306 |   const data = await response.json()
+ POST /api/v1/ai/generate-animation 200 in 3534ms
+ ✓ Compiled in 1099ms (852 modules)
+ ✓ Compiled in 254ms (852 modules)
+ ✓ Compiled in 280ms (852 modules)
+ ✓ Compiled in 760ms (960 modules)
+ ✓ Compiled in 422ms (852 modules)
+ ✓ Compiled in 273ms (852 modules)
+ ✓ Compiled in 364ms (852 modules)
+ ✓ Compiled in 432ms (852 modules)
+ ✓ Compiled in 366ms (852 modules)
+ ✓ Compiled in 520ms (858 modules)
+ ✓ Compiled in 353ms (859 modules)
+ ✓ Compiled in 362ms (859 modules)
+ ✓ Compiled in 336ms (859 modules)
+ ✓ Compiled in 300ms (859 modules)
+ ○ Compiling /editor/visual ...
+ ✓ Compiled /editor/visual in 1018ms (812 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /editor/visual 200 in 1580ms
+ ✓ Compiled /api/v1/editor/generate-layout in 404ms (1675 modules)
+ POST /api/v1/editor/generate-layout 200 in 534ms
+ POST /api/v1/editor/generate-layout 200 in 10ms
+ ✓ Compiled / in 206ms (841 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 681ms
+ ✓ Compiled /generator in 411ms (870 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /generator 200 in 829ms
+ GET /editor/visual 200 in 162ms
+ ✓ Compiled /auth/login in 379ms (935 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /auth/login 200 in 912ms
+ ✓ Compiled /dashboard in 442ms (963 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /dashboard 200 in 943ms
+ ✓ Compiled /api/v1/ai/status in 264ms (966 modules)
+ GET /api/v1/ai/status 200 in 340ms
+ POST /api/v1/editor/generate-layout 200 in 15ms
+ ✓ Compiled in 489ms (859 modules)
+ ✓ Compiled in 243ms (859 modules)
+ ✓ Compiled in 801ms (1825 modules)
+ ✓ Compiled in 983ms (865 modules)
+ ✓ Compiled /editor/visual in 280ms (822 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /editor/visual 200 in 853ms
+ ✓ Compiled in 439ms (865 modules)
+ ✓ Compiled in 224ms (865 modules)
+ ✓ Compiled in 507ms (865 modules)
+ ✓ Compiled in 383ms (866 modules)
+ ✓ Compiled in 625ms (868 modules)
+ ✓ Compiled in 337ms (869 modules)
+ ✓ Compiled in 779ms (869 modules)
+ ○ Compiling /editor/visual ...
+ ✓ Compiled /editor/visual in 685ms (827 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /editor/visual 200 in 1242ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.6s (780 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 4289ms
+ ✓ Compiled in 1152ms (869 modules)
+ ✓ Compiled in 347ms (869 modules)
+ GET / 200 in 196ms
+ GET / 200 in 30ms
+ ✓ Compiled in 296ms (869 modules)
+ GET / 200 in 41ms
+ GET / 200 in 173ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.7s (1639 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /pricing 404 in 4978ms
+ GET /visual-editor 404 in 2614ms
+ ○ Compiling /templates ...
+ ⨯ ./src/app/generator/page.tsx
+Module parse failed: Identifier 'Download' has already been declared (6:32)
+| import { FileCode, Download, Copy, Check } from "__barrel_optimize__?names=Check,Copy,Download,FileCode!=!lucide-react";
+| import Link from 'next/link';
+> import { ArrowLeft, Code2, Eye, Download, Copy, Check, FileCode } from "__barrel_optimize__?names=ArrowLeft,Check,Code2,Copy,Download,Eye,FileCode!=!lucide-react";
+| import { WebsiteGenerator } from '@/components/ai';
+| import { Button } from '@/components/ui/Button';
+
+Import trace for requested module:
+./src/app/generator/page.tsx
+ ⨯ ./src/app/generator/page.tsx
+Module parse failed: Identifier 'Download' has already been declared (6:32)
+| import { FileCode, Download, Copy, Check } from "__barrel_optimize__?names=Check,Copy,Download,FileCode!=!lucide-react";
+| import Link from 'next/link';
+> import { ArrowLeft, Code2, Eye, Download, Copy, Check, FileCode } from "__barrel_optimize__?names=ArrowLeft,Check,Code2,Copy,Download,Eye,FileCode!=!lucide-react";
+| import { WebsiteGenerator } from '@/components/ai';
+| import { Button } from '@/components/ui/Button';
+
+Import trace for requested module:
+./src/app/generator/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\cache\webpack\client-development-fallback\0.pack.gz'
+ ⨯ ./src/app/generator/page.tsx
+Module parse failed: Identifier 'Download' has already been declared (6:32)
+| import { FileCode, Download, Copy, Check } from "__barrel_optimize__?names=Check,Copy,Download,FileCode!=!lucide-react";
+| import Link from 'next/link';
+> import { ArrowLeft, Code2, Eye, Download, Copy, Check, FileCode } from "__barrel_optimize__?names=ArrowLeft,Check,Code2,Copy,Download,Eye,FileCode!=!lucide-react";
+| import { WebsiteGenerator } from '@/components/ai';
+| import { Button } from '@/components/ui/Button';
+
+Import trace for requested module:
+./src/app/generator/page.tsx
+ GET /prompts 500 in 58338ms
+ GET /templates 500 in 57987ms
+ GET / 500 in 4480ms
+ GET / 500 in 530ms
+ GET / 500 in 32ms
+ ⨯ ./src/components/ai/WebsiteGenerator.tsx:10:1
+Module not found: Can't resolve '@/components/ui/Select'
+   8 | import { Input } from '@/components/ui/Input'
+   9 | import { Textarea } from '@/components/ui/Input'
+> 10 | import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
+     | ^
+  11 | import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+  12 | import { toast } from 'react-hot-toast'
+  13 | import { copyToClipboard } from '@/lib/utils'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ai/WebsiteGenerator.tsx:10:1
+Module not found: Can't resolve '@/components/ui/Select'
+   8 | import { Input } from '@/components/ui/Input'
+   9 | import { Textarea } from '@/components/ui/Input'
+> 10 | import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
+     | ^
+  11 | import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+  12 | import { toast } from 'react-hot-toast'
+  13 | import { copyToClipboard } from '@/lib/utils'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ui/Select.tsx:4:1
+Module not found: Can't resolve '@radix-ui/react-select'
+  2 |
+  3 | import * as React from 'react'
+> 4 | import * as SelectPrimitive from '@radix-ui/react-select'
+    | ^
+  5 | import { ChevronDown, ChevronUp, Check } from 'lucide-react'
+  6 | import { cn } from '@/lib/utils'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/WebsiteGenerator.tsx
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ui/Select.tsx:4:1
+Module not found: Can't resolve '@radix-ui/react-select'
+  2 |
+  3 | import * as React from 'react'
+> 4 | import * as SelectPrimitive from '@radix-ui/react-select'
+    | ^
+  5 | import { ChevronDown, ChevronUp, Check } from 'lucide-react'
+  6 | import { cn } from '@/lib/utils'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/WebsiteGenerator.tsx
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ui/Select.tsx:4:1
+Module not found: Can't resolve '@radix-ui/react-select'
+  2 |
+  3 | import * as React from 'react'
+> 4 | import * as SelectPrimitive from '@radix-ui/react-select'
+    | ^
+  5 | import { ChevronDown, ChevronUp, Check } from 'lucide-react'
+  6 | import { cn } from '@/lib/utils'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/WebsiteGenerator.tsx
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ui/Select.tsx:4:1
+Module not found: Can't resolve '@radix-ui/react-select'
+  2 |
+  3 | import * as React from 'react'
+> 4 | import * as SelectPrimitive from '@radix-ui/react-select'
+    | ^
+  5 | import { ChevronDown, ChevronUp, Check } from 'lucide-react'
+  6 | import { cn } from '@/lib/utils'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/WebsiteGenerator.tsx
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ⨯ ./src/components/ui/Select.tsx:4:1
+Module not found: Can't resolve '@radix-ui/react-select'
+  2 |
+  3 | import * as React from 'react'
+> 4 | import * as SelectPrimitive from '@radix-ui/react-select'
+    | ^
+  5 | import { ChevronDown, ChevronUp, Check } from 'lucide-react'
+  6 | import { cn } from '@/lib/utils'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/ai/WebsiteGenerator.tsx
+./src/components/ai/index.ts
+./src/app/generator/page.tsx
+ ✓ Compiled /_error in 1945ms (1213 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1515ms (2058 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 1700ms
+ GET /_next/static/webpack/42c62ab47bd4d82b.webpack.hot-update.json 404 in 2235ms
+ GET /templates 200 in 2391ms
+ GET / 200 in 419ms
+ GET /templates 200 in 465ms
+ ✓ Compiled in 452ms (1216 modules)
+ GET /api/v1/templates?sort_by=newest&page=1&limit=12 404 in 54ms
+ GET /api/v1/templates?sort_by=newest&page=1&limit=12 404 in 100ms
+ GET /api/v1/templates?sort_by=newest&page=1&limit=12 404 in 99ms
+ ✓ Compiled in 345ms (1216 modules)
+ GET /templates 200 in 109ms
+ GET / 200 in 110ms
+ ✓ Compiled in 380ms (1216 modules)
+ GET /templates 200 in 73ms
+ GET / 200 in 45ms
+ ✓ Compiled in 446ms (1216 modules)
+ GET /templates 200 in 42ms
+ GET / 200 in 30ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\cache\webpack\client-development-fallback\0.pack.gz'
+ ✓ Compiled in 487ms (1216 modules)
+ GET /templates 200 in 60ms
+ GET / 200 in 56ms
+ ✓ Compiled in 439ms (1216 modules)
+ GET /templates 200 in 45ms
+ GET / 200 in 47ms
+ ✓ Compiled in 438ms (1216 modules)
+ GET /templates 200 in 51ms
+ GET / 200 in 28ms
+ ✓ Compiled in 463ms (1219 modules)
+ GET /templates 200 in 77ms
+ GET / 200 in 77ms
+ ✓ Compiled in 422ms (1219 modules)
+ GET /templates 200 in 61ms
+ GET / 200 in 57ms
+ ✓ Compiled in 396ms (1216 modules)
+ GET /templates 200 in 53ms
+ GET / 200 in 56ms
+ ✓ Compiled in 374ms (1216 modules)
+ GET /templates 200 in 83ms
+ GET / 200 in 87ms
+ ✓ Compiled in 436ms (1216 modules)
+ GET /templates 200 in 161ms
+ GET / 200 in 28ms
+ ✓ Compiled in 437ms (1216 modules)
+ GET /templates 200 in 62ms
+ GET / 200 in 62ms
+ ○ Compiling /auth/login ...
+ ✓ Compiled /auth/login in 2.4s (920 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /auth/login 200 in 2724ms
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+ GET /templates 500 in 515ms
+ ○ Compiling /_error ...
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+ ✓ Compiled /_error in 1568ms (2179 modules)
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\auth\login\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4119)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\templates\page.js:323:4182) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/templates'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ GET /templates 500 in 1655ms
+ GET /templates 500 in 351ms
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /auth/login 200 in 1379ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1727ms (2169 modules)
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5482)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5530) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5482)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5530) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5482)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5530) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5482)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js:1:5530) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ GET / 500 in 639ms
+ GET / 500 in 304ms
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ GET / 500 in 1034ms
+ GET / 500 in 451ms
+ ⨯ Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module './4447.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:30974)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\page.js:1:31037) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\app\_not-found\page.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\require.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\load-components.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\utils.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\options.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\swc\index.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\config.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\next.js
+- D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\node_modules\next\dist\server\lib\start-server.js
+    at __webpack_require__.f.require (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:341)
+    at Object.<anonymous> (D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\server\pages\_document.js:1:384) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'D:\OpenCode and Claud Code\Project_AI\webmotion.ai\frontend\.next\fallback-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\OpenCode and Claud Code\\Project_AI\\webmotion.ai\\frontend\\.next\\fallback-build-manifest.json'
+}
+ GET / 500 in 628ms
+ GET / 500 in 264ms

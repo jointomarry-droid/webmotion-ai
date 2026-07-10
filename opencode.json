@@ -1,0 +1,80 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "webmotion",
+  "default_agent": "general",
+  "instructions": ["PRD.MD", "AGENTS.md"],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "mcp": {
+    "supabase": {
+      "type": "remote",
+      "url": "https://mcp.supabase.com/mcp?project_ref=hmewyvjrsqdcfmdpvwmo",
+      "enabled": true
+    },
+    "mongodb": {
+      "type": "local",
+      "command": "uvx",
+      "args": ["mongodb-mcp-server"],
+      "env": {
+        "MONGODB_URI": "mongodb+srv://jointomarry:JointoMarry@1427@cluster0.i04fqcu.mongodb.net/?appName=Cluster0",
+        "MONGODB_DATABASE": "webmotion"
+      },
+      "enabled": true
+    }
+  },
+  "agent": {
+    "webmotion-architect": {
+      "description": "System architecture agent for WebMotion.ai - designs scalable microservices, database schemas, and API structures",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "webmotion-frontend": {
+      "description": "Frontend development agent for WebMotion.ai - builds Next.js/React UI components and animations",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "webmotion-backend": {
+      "description": "Backend development agent for WebMotion.ai - builds Python FastAPI services and AI orchestration",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "webmotion-ai": {
+      "description": "AI/ML agent for WebMotion.ai - specializes in animation generation, prompt engineering, and multi-model orchestration",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "webmotion-deploy": {
+      "description": "Deployment and DevOps agent for WebMotion.ai - handles CI/CD, infrastructure, and monitoring",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow"
+  }
+}
