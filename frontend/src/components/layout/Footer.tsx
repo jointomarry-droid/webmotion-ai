@@ -25,6 +25,7 @@ export function Footer() {
       { label: 'Careers', href: '/careers' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
+      { label: 'Admin Panel', href: '/admin' },
     ],
     support: [
       { label: 'Help Center', href: '/help' },
