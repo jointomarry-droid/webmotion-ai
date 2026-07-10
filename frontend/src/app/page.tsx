@@ -522,6 +522,7 @@ export default function HomePage() {
                 <li><Link href="/about" className="hover:text-foreground transition-colors">About</Link></li>
                 <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
                 <li><Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link></li>
+                <li><Link href="/admin" className="hover:text-foreground transition-colors">Admin Panel</Link></li>
               </ul>
             </div>
           </div>
